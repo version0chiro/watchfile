@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logs</title>
+  </head>
+  <body>
+    <h1>Logs for the data file</h1>
+    <ul class="logs">
+      <li>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem nulla eum
+        praesentium ut alias ullam nesciunt est.
+      </li>
+      <li>
+        Modi ea molestias id? Nam culpa velit doloribus commodi ad sapiente vero
+        assumenda.
+      </li>
+    </ul>
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      console.log(socket);
+
+      socket.on("update", (data) => {
+        console.log(data);
+        const logs = document.querySelector(".logs");
+        logs.innerHTML = '';
+        data.forEach((d) => {
+          // const logs = document.querySelector(".logs");
+          const li = document.createElement("li");
+          li.textContent = d;
+          logs.appendChild(li);
+        });
+      });
+    </script>
+  </body>
+</html>
